@@ -23,10 +23,22 @@ public class View {
      * @return coefficient value
      * @throws InputMismatchException thrown if the given coefficient is not an integer
      */
-    public int readNumber(int n)
-            throws InputMismatchException {
+    public int readNumber(int n) {
         System.out.println("Please type which number of fibonacci sequence you want to display: ");
-        return scanner.nextInt();
+        int number = 0;
+
+        try{
+            number = scanner.nextInt();
+        } catch (InputMismatchException e){
+            System.out.println("Please insert integer value!");
+            scanner.next();
+        }
+
+        if(number < 0){
+            throw new IllegalArgumentException(String.format("You cannot obtain fibonacci sequence ", number));
+        }
+
+        return number;
     }
 
     /**
