@@ -1,5 +1,6 @@
 package pl.polsl.szymongretka.Controller;
 
+import pl.polsl.szymongretka.Exceptions.FibonacciException;
 import pl.polsl.szymongretka.View.View;
 import pl.polsl.szymongretka.model.FibonacciGenerator;
 
@@ -28,7 +29,7 @@ public class Controller {
 
     public void getFibonacciGeneratorRecursive() {
         try {
-            n = view.readNumber(n);
+            n = view.readNumber();
             Instant before = Instant.now();
             this.fibonacciGenerator.fibonacciRecursive(n);
             Instant after = Instant.now();
@@ -38,12 +39,14 @@ public class Controller {
         }
         catch (InputMismatchException e){
             view.print("Error: "+ e.getMessage());
+        } catch (FibonacciException e) {
+            view.print(e.getMessage());
         }
     }
 
     public void getFibonacciGeneratorIterative() {
         try {
-            n = view.readNumber(n);
+            n = view.readNumber();
             Instant before = Instant.now();
             this.fibonacciGenerator.fibonacciIterative(n);
             Instant after = Instant.now();
@@ -53,6 +56,8 @@ public class Controller {
         }
         catch (InputMismatchException e){
             view.print("Error: "+ e.getMessage());
+        } catch (FibonacciException e) {
+            view.print(e.getMessage());
         }
     }
 }

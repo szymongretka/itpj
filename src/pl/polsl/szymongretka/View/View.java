@@ -1,6 +1,8 @@
 package pl.polsl.szymongretka.View;
 
 
+import pl.polsl.szymongretka.Exceptions.FibonacciException;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -18,27 +20,19 @@ public class View {
 
     /**
      * Read input number
-     *
-     * @param n defines which number to read
      * @return coefficient value
      * @throws InputMismatchException thrown if the given coefficient is not an integer
      */
-    public int readNumber(int n) {
+    public int readNumber() throws InputMismatchException, FibonacciException {
         System.out.println("Please type which number of fibonacci sequence you want to display: ");
-        int number = 0;
-
-        try{
-            number = scanner.nextInt();
-        } catch (InputMismatchException e){
-            System.out.println("Please insert integer value!");
-            scanner.next();
-        }
+        int number;
+        number = scanner.nextInt();
 
         if(number < 0){
-            throw new IllegalArgumentException(String.format("You cannot obtain fibonacci sequence ", number));
+            throw new FibonacciException("Type number which is greater than 0!");
+        } else {
+            return number;
         }
-
-        return number;
     }
 
     /**
