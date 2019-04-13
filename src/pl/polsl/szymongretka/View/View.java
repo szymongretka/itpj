@@ -4,6 +4,7 @@ package pl.polsl.szymongretka.View;
 import pl.polsl.szymongretka.Exceptions.FibonacciException;
 
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -42,6 +43,12 @@ public class View {
      */
     public void print(String message) {
         System.out.println(message);
+    }
+
+    public <K, V> void printMap(Map<K, V> map){
+        for(Map.Entry<K, V> s : map.entrySet()){
+            System.out.println(s.getKey()+ " : " + s.getValue());
+        }
     }
 
 }

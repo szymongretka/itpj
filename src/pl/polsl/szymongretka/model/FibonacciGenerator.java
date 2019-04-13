@@ -1,5 +1,10 @@
 package pl.polsl.szymongretka.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Model class generating Fibonacci sequence using iterative or recursive methods
  *
@@ -8,22 +13,34 @@ package pl.polsl.szymongretka.model;
  */
 public class FibonacciGenerator {
 
+    private final Map<Integer, Long> fibMap = new HashMap<>();
+
+    public Map<Integer, Long> getResult() {
+        return fibMap;
+    }
+
+    public FibonacciGenerator() {
+        this.fibMap.put(0, 0L);
+    }
     /**
      *method which returns the result of fibonacci sequence
      * using recursive method
      * @param n defines which number to read
      * @return result from fibonacci sequence
      */
-    public int fibonacciRecursive(int n){
+    public Long fibonacciRecursive(int n) {
 
-        if(n==0){
-            return 0;
-        } else if((n==1)||(n==2)) {
-            return 1;
+        if(n==1) {
+            fibMap.put(1, 1L);
+            return 1L;
+        } else if(n==2){
+            fibMap.put(1, 1L);
+            return 1L;
         } else {
-            return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+            return fibMap.computeIfAbsent(n, key -> fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2));
         }
     }
+
 
     /**
      *method which returns the result of fibonacci sequence
